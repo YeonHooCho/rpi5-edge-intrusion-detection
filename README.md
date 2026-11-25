@@ -1,7 +1,7 @@
 # Containerized Edge Intrusion Detection & Real-Time Telemetry Pipeline (Raspberry Pi 5)
 
-> **Raspberry Pi 5 (ARM64) · ADXL345 (I2C/SPI) · Docker & Nginx · Python Flask · SQLite3**  
-> An edge-computing physical intrusion monitoring system engineered on Raspberry Pi 5, combining hardware-level signal filtering, isolated Docker container infrastructure, and asynchronous mobile web polling to achieve **sub-0.5s end-to-end alert latency**.
+> **Raspberry Pi 5 (ARM64) · ADXL345 (I2C) · Docker & Nginx · Python Flask · SQLite3**  
+> An edge-computing physical intrusion monitoring system engineered on Raspberry Pi 5, combining hardware-level gravity-offset signal filtering, isolated Docker container infrastructure, and asynchronous mobile web polling to achieve **sub-0.5s end-to-end alert latency**.
 
 ---
 
@@ -10,7 +10,11 @@
 - **Gravity-Offset Filtering Algorithm:** Eliminated continuous false positives caused by static Earth gravity ($9.8\text{ m/s}^2$) along the Z-axis by applying real-time baseline compensation ($Z_{\text{filtered}} = Z_{\text{raw}} - 9.8$) with threshold event detection ($\vert{}Z_{\text{filtered}}\vert{} > 3.0$).
 - **ARM64 Infrastructure Isolation:** Resolved ARM64 container compatibility bottlenecks by decoupling lightweight local time-series persistence (**SQLite3**) from an isolated **Docker + Nginx** web gateway, ensuring zero host downtime even under peripheral I/O faults.
 
-## System Architecture
+## Hardware Setup & System Architecture
+
+<p align="center">
+  <img src="docs/IMG_3365.jpg" alt="Raspberry Pi 5 and ADXL345 I2C Wiring" width="480"/>
+</p>
 
 ```text
 [ADXL345 3-Axis Accelerometer] ──(I2C Bus)──▶ [Raspberry Pi 5 Edge Collector (insert_gyro.py)]
